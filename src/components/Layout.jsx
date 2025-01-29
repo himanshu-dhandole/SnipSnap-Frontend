@@ -4,12 +4,14 @@ import NavBar from './NavBar.jsx'
 import Footer from './Footer.jsx'
 const Layout = () => {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <NavBar/>
-       <Outlet/>
-      <Footer/>
-    </>
-  )
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default Layout
