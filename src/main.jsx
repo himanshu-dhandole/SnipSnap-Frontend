@@ -9,30 +9,32 @@ import SignIn from './components/SignIn.jsx'
 import SignUp from './components/SignUp.jsx'
 
 const router = createBrowserRouter([
-   {
+  {
     path:'/',
     element:<App/>,
     children:[
       {
         path:'/',
         element:<LandingPage/>
-      },{
+      },
+      {
         path:'/about',
         element:<AboutPage/>
-      },{
+      },
+      {
         path:'/signin',
         element:<SignIn/>
-      },{
+      },
+      {
         path:'/signup',
         element:<SignUp/>
       }
     ]
   }
-
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-        <RouterProvider router={router}/>
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
