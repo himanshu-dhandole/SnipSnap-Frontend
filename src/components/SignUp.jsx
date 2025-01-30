@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import api from "../API/api.js"
+ 
 
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState('');
+
+  const navigate = useNavigate() ;
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -31,10 +38,33 @@ const SignUp = () => {
     },
   };
 
-  const handleSubmit = (e) => {
+
+  const registerHandler = async (e)=>{
     e.preventDefault();
-    console.log('Signing up with:', { name, email, password });
+    setLoader(true);
+
+
+    try {
+        await api.post(
+          "api/auth/register",{name,email,password}
+        );
+        resetForm() ;
+        navigate("/signin") ;
+    } catch (error) {
+      console.error(error) ;
+    } finally{
+      setLoader(false) ;
+    }
+
   };
+
+  const resetForm=()=>{
+    setEmail("");
+    setEmail("");
+    setPassword("");
+
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
@@ -50,7 +80,7 @@ const SignUp = () => {
           </h2>
         </motion.div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={registerHandler} className="space-y-6">
           <motion.div variants={itemVariants}>
             <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="name">
               Name

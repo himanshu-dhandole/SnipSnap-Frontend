@@ -40,7 +40,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="pt-10 min-h-screen bg-gradient-to-br from-emerald-700 via-green-400 to-emerald-500 overflow-hidden">
+    <div className="pt-10  min-h-screen bg-gradient-to-br from-emerald-700 via-green-400 to-emerald-500 overflow-hidden">
       <motion.div 
         className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between min-h-screen py-12 lg:py-20"
         variants={containerVariants}
